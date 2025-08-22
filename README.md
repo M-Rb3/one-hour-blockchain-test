@@ -6,7 +6,7 @@ An Ethereum VotingDAO smart contract that allows users to create proposals, vote
 
 ## Timebox: ~60 Minutes
 
-- **50 minutes**: Core contract + frontend (required)
+- **50 minutes**: Core contract + frontend(no need to complete it fully)
 - **10 minutes**: Polish optional + tests (if time permits)
 
 ## Setup
@@ -15,6 +15,7 @@ An Ethereum VotingDAO smart contract that allows users to create proposals, vote
 
 - Node.js 18+
 - npm or yarn
+- MetaMask or any Web3 wallet
 
 ### Quick Start
 
@@ -24,6 +25,10 @@ git clone https://github.com/M-Rb3/code-assessment
 cd code-assessment
 npm install
 
+# Setup environment (optional for deployment)
+cp env.example .env
+# Edit .env with your configuration
+
 # Run tests (your main focus)
 npm test
 
@@ -31,11 +36,21 @@ npm test
 npm run dev
 ```
 
+# Deploy to testnet
+
+npm run deploy:sepolia
+
+# The deployment will save contract info to deployment.json
+
+# Use this address in your frontend
+
+````
+
 ## Your Mission: Complete the TODOs
 
 You have a **working template** with strategic TODOs. **DO NOT start from scratch** - just complete the marked sections.
 
-### 🔥 Required TODOs (Core - 50 minutes)
+### Required TODOs (Core - 50 minutes)
 
 #### Smart Contract (`contracts/VotingDAO.sol`)
 
@@ -88,91 +103,7 @@ You have a **working template** with strategic TODOs. **DO NOT start from scratc
 - **TODO-E**: Complete "Should handle empty proposals array" test
 - **TODO-F**: Complete "Should handle proposal with zero votes" test
 
-### 🎯 Frontend TODOs (Required - 50 minutes)
-
-#### Web3 Service (`frontend/src/lib/web3.ts`)
-
-- **TODO-1**: Implement wallet connection logic
-
-  - Check if MetaMask (or any wallet) is available
-  - Connect to the wallet provider
-  - Get the signer from the provider
-  - Return the connected address
-  - Handle errors appropriately
-
-- **TODO-2**: Implement contract connection logic
-
-  - Validate that wallet is connected
-  - Create a new contract instance with the provided address
-  - Store the contract instance
-  - Handle errors appropriately
-
-- **TODO-3**: Implement proposal creation
-
-  - Validate that contract is connected
-  - Call the createProposal function on the contract
-  - Wait for the transaction to be mined
-  - Handle errors appropriately
-
-- **TODO-4**: Implement voting logic
-
-  - Validate that contract is connected
-  - Call the vote function on the contract with the proposal ID
-  - Wait for the transaction to be mined
-  - Handle errors appropriately
-
-- **TODO-5**: Implement proposal ending logic
-
-  - Validate that contract is connected
-  - Call the endProposal function on the contract
-  - Wait for the transaction to be mined
-  - Handle errors appropriately
-
-- **TODO-6**: Implement proposal count retrieval
-
-  - Validate that contract is connected
-  - Call getProposalCount on the contract
-  - Return the count as a number
-  - Handle errors appropriately
-
-- **TODO-7**: Implement single proposal retrieval
-
-  - Validate that contract is connected
-  - Call getProposal on the contract with the proposal ID
-  - Return a Proposal object with the correct structure
-  - Handle errors appropriately
-
-- **TODO-8**: Implement all proposals retrieval
-
-  - Get the total proposal count
-  - Loop through all proposals and get their details
-  - Return an array of Proposal objects
-  - Handle errors appropriately
-
-- **TODO-9**: Implement winning proposal retrieval
-
-  - Validate that contract is connected
-  - Call getWinningProposal on the contract
-  - Return the winning proposal ID as a number
-  - Handle errors appropriately
-
-- **TODO-10**: Implement has voted check
-
-  - Validate that contract is connected
-  - Call hasVotedOnProposal on the contract
-  - Return whether the address has voted
-  - Handle errors appropriately
-
-- **TODO-11**: Implement current address retrieval
-
-  - Validate that wallet is connected
-  - Get the current address from the signer
-  - Return the address as a string
-  - Handle errors appropriately
-
-- **TODO-12**: Implement connection status check
-  - Return true if both wallet and contract are connected
-  - Return false otherwise
+### Frontend TODOs
 
 #### React Component (`frontend/src/pages/Index.tsx`)
 
@@ -236,7 +167,7 @@ npx hardhat test --grep "TODO-A"
 
 # Run with gas reporting
 npx hardhat test --gas-report
-```
+````
 
 ## Rubric (Pass/Fail)
 
@@ -270,12 +201,17 @@ npm test             # Run all tests
 npm run dev          # Show help for running tests + frontend
 
 # Development commands
-npx hardhat compile  # Compile contracts
+npm run compile      # Compile contracts
 npx hardhat node     # Start local blockchain
 npx hardhat clean    # Clean artifacts
 
-# Frontend (optional)
-cd frontend && npm run dev  # Start Vite dev server on port 5173
+# Deployment commands
+npm run deploy       # Deploy to local network
+npm run deploy:sepolia  # Deploy to Sepolia testnet
+npm run verify       # Verify contract on Etherscan
+
+# Frontend
+cd frontned && npm run dev  # Start Vite dev server on port 5173
 ```
 
 ## Project Structure
@@ -284,13 +220,17 @@ cd frontend && npm run dev  # Start Vite dev server on port 5173
 code-assessment/
 ├── package.json              # Main project config
 ├── hardhat.config.cjs        # Hardhat configuration
+├── env.example               # Environment variables template
+├── deployment.json           # Generated after deployment
 ├── contracts/
 │   └── VotingDAO.sol         # Main contract (has TODOs)
+├── scripts/
+│   ├── deploy.cjs            # Deployment script
 ├── test/
 │   └── VotingDAO.test.cjs    # Test suite (has TODOs)
 ├── .github/workflows/
 │   └── ci.yml                # GitHub Actions CI
-└── frontend/                 # Vite + React app (has TODOs)
+└── frontned/                 # Vite + React app (has TODOs)
     ├── package.json
     └── src/
         ├── lib/
@@ -300,15 +240,6 @@ code-assessment/
 ```
 
 ## Success Criteria Summary
-
-**Minimum viable submission:**
-
-- Contract compiles ✅
-- All contract TODOs completed ✅
-- All web3 service TODOs completed ✅
-- All React component TODOs completed ✅
-- Frontend runs without errors ✅
-- Wallet connection works ✅
 
 **Excellent submission:**
 

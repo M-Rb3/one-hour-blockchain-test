@@ -6,11 +6,16 @@
   "scripts": {
     "postinstall": "cd frontned && npm install --no-audit --no-fund || true",
     "test": "npx hardhat test",
-    "dev": "echo '\\n📋 To run tests: npm test\\n🌐 To start frontend: cd frontned && npm run dev\\n'"
+    "compile": "npx hardhat compile",
+    "deploy": "npx hardhat run scripts/deploy.cjs",
+    "deploy:sepolia": "NETWORK=sepolia npx hardhat run scripts/deploy.cjs",
+    "verify": "npx hardhat verify",
+    "dev": "echo '\\n📋 To run tests: npm test\\n🌐 To start frontend: cd frontned && npm run dev\\n🚀 To deploy: npm run deploy:sepolia\\n'"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
-    "hardhat": "^2.19.0"
+    "hardhat": "^2.19.0",
+    "dotenv": "^16.3.1"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.0"
