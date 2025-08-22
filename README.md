@@ -22,8 +22,8 @@ An Ethereum VotingDAO smart contract that allows users to create proposals, vote
 
 ```bash
 # Clone the repository
-git clone https://github.com/M-Rb3/code-assessment
-cd code-assessment
+git clone https://github.com/M-Rb3/one-hour-blockchain-test
+cd one-hour-blockchain-test
 
 # Run the Docker setup script
 # On Linux/Mac:
