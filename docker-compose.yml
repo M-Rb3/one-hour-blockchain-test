@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  blockchain-test:
+    build: .
+    ports:
+      - "5173:5173" # Frontend
+      - "8545:8545" # Hardhat node
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/frontned/node_modules
+    environment:
+      - NODE_ENV=development
+    command: sh -c "npm run dev & cd frontned && npm run dev"
+    stdin_open: true
+    tty: true
+
+  # Alternative: Just run the blockchain environment
+  blockchain-only:
+    build: .
+    ports:
+      - "8545:8545"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npx hardhat node
+    profiles:
+      - blockchain
