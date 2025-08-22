@@ -11,13 +11,57 @@ An Ethereum VotingDAO smart contract that allows users to create proposals, vote
 
 ## Setup
 
-### Prerequisites
+### Option 1: Docker (Recommended - No setup issues!)
 
-- Node.js 18+
+#### Prerequisites
+
+- Docker and Docker Compose installed
+- MetaMask or any Web3 wallet
+
+#### Quick Start with Docker
+
+```bash
+# Clone the repository
+git clone https://github.com/M-Rb3/code-assessment
+cd code-assessment
+
+# Run the Docker setup script
+# On Linux/Mac:
+chmod +x scripts/docker-setup.sh
+./scripts/docker-setup.sh
+
+# On Windows:
+scripts/docker-setup.bat
+
+# Or manually:
+docker-compose up -d
+```
+
+#### Docker Commands
+
+```bash
+# View logs
+docker-compose logs -f
+
+# Run tests
+docker-compose exec blockchain-test npm test
+
+# Compile contracts
+docker-compose exec blockchain-test npm run compile
+
+# Stop services
+docker-compose down
+```
+
+### Option 2: Local Setup
+
+#### Prerequisites
+
+- Node.js 24+ (or use Docker for consistent environment)
 - npm or yarn
 - MetaMask or any Web3 wallet
 
-### Quick Start
+#### Quick Start
 
 ```bash
 # Clone and install dependencies
@@ -194,6 +238,24 @@ npx hardhat test --gas-report
 
 ## Run Commands Reference
 
+### Docker Commands (Recommended)
+
+```bash
+# Setup and start
+docker-compose up -d              # Start all services
+docker-compose down               # Stop all services
+
+# Development
+docker-compose exec blockchain-test npm test     # Run tests
+docker-compose exec blockchain-test npm run compile  # Compile contracts
+docker-compose logs -f            # View logs
+
+# Frontend (accessible at http://localhost:5173)
+# Hardhat Node (accessible at http://localhost:8545)
+```
+
+### Local Commands
+
 ```bash
 # Essential commands
 npm install           # Install dependencies
@@ -218,6 +280,9 @@ cd frontned && npm run dev  # Start Vite dev server on port 5173
 
 ```
 code-assessment/
+├── Dockerfile                # Docker configuration
+├── docker-compose.yml        # Docker services
+├── .dockerignore             # Docker ignore file
 ├── package.json              # Main project config
 ├── hardhat.config.cjs        # Hardhat configuration
 ├── env.example               # Environment variables template
@@ -226,6 +291,8 @@ code-assessment/
 │   └── VotingDAO.sol         # Main contract (has TODOs)
 ├── scripts/
 │   ├── deploy.cjs            # Deployment script
+│   ├── docker-setup.sh       # Linux/Mac Docker setup
+│   └── docker-setup.bat      # Windows Docker setup
 ├── test/
 │   └── VotingDAO.test.cjs    # Test suite (has TODOs)
 ├── .github/workflows/
