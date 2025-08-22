@@ -12,6 +12,7 @@ A complete decentralized autonomous organization (DAO) voting application built 
 ## Smart Contract Features
 
 ### VotingDAO Contract
+
 - **Create Proposal**: Submit new proposals for community voting
 - **Vote**: Cast votes on active proposals (one vote per address per proposal)
 - **End Proposal**: Mark proposals as inactive
@@ -19,6 +20,7 @@ A complete decentralized autonomous organization (DAO) voting application built 
 - **Events**: Track proposal creation and voting activities
 
 ### Contract Functions
+
 ```solidity
 function createProposal(string memory description) external
 function vote(uint proposalId) external
@@ -48,28 +50,32 @@ function hasVotedOnProposal(uint proposalId, address voter) external view return
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd mystic/test
    ```
 
 2. **Install dependencies**
+
    ```bash
    # Install root dependencies
    npm install
-   
+
    # Install frontend dependencies
    cd frontned
    npm install
    ```
 
 3. **Start local blockchain**
+
    ```bash
    # From the root directory
    npx hardhat node
    ```
 
 4. **Deploy the contract**
+
    ```bash
    # In a new terminal, from the root directory
    npx hardhat run scripts/deploy.js --network localhost
@@ -84,21 +90,25 @@ function hasVotedOnProposal(uint proposalId, address voter) external view return
 ### Usage
 
 1. **Connect MetaMask**
+
    - Open the application in your browser
    - Click "Connect MetaMask"
    - Approve the connection in MetaMask
 
 2. **Connect to Contract**
+
    - Copy the deployed contract address from the deployment output
    - Paste it in the "Contract Address" field
    - Click "Connect Contract"
 
 3. **Create Proposals**
+
    - Enter a proposal description
    - Click "Create Proposal"
    - Confirm the transaction in MetaMask
 
 4. **Vote on Proposals**
+
    - View all active proposals
    - Click "Vote" on any proposal you want to support
    - Confirm the transaction in MetaMask
@@ -133,6 +143,7 @@ function hasVotedOnProposal(uint proposalId, address voter) external view return
 ## Smart Contract Details
 
 ### Proposal Structure
+
 ```solidity
 struct Proposal {
     string description;    // Proposal description
@@ -142,10 +153,12 @@ struct Proposal {
 ```
 
 ### Events
+
 - `ProposalCreated(uint id, string description)`: Emitted when a new proposal is created
 - `Voted(uint proposalId, address voter)`: Emitted when someone votes on a proposal
 
 ### Security Features
+
 - One vote per address per proposal
 - Only active proposals can receive votes
 - Proper access control for proposal ending
@@ -153,12 +166,14 @@ struct Proposal {
 ## Testing
 
 ### Smart Contract Testing
+
 ```bash
 # Run contract tests
 npx hardhat test
 ```
 
 ### Frontend Testing
+
 ```bash
 # From the frontned directory
 npm test
@@ -167,12 +182,14 @@ npm test
 ## Deployment
 
 ### Local Development
+
 ```bash
 npx hardhat node
 npx hardhat run scripts/deploy.js --network localhost
 ```
 
 ### Testnet Deployment
+
 1. Update `hardhat.config.js` with your testnet configuration
 2. Set up environment variables for private keys
 3. Deploy using the appropriate network flag

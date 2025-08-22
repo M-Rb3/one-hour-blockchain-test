@@ -1,5 +1,5 @@
 {
-  "name": "one-hour-blockchain-test",
+  "name": "code-assessment",
   "version": "1.0.0",
   "type": "module",
   "description": "One-hour blockchain coding test template with Solidity smart contracts and tests",
@@ -15,6 +15,12 @@
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.0"
   },
-  "keywords": ["blockchain", "solidity", "hardhat", "test", "ethereum"],
+  "keywords": [
+    "blockchain",
+    "solidity",
+    "hardhat",
+    "test",
+    "ethereum"
+  ],
   "license": "MIT"
 }
