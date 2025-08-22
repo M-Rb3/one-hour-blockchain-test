@@ -1,11 +1,12 @@
 {
   "name": "one-hour-blockchain-test",
   "version": "1.0.0",
+  "type": "module",
   "description": "One-hour blockchain coding test template with Solidity smart contracts and tests",
   "scripts": {
-    "postinstall": "cd frontend && npm install --no-audit --no-fund || true",
+    "postinstall": "cd frontned && npm install --no-audit --no-fund || true",
     "test": "npx hardhat test",
-    "dev": "echo '\\n📋 To run tests: npm test\\n🌐 To start frontend: cd frontend && npm run dev\\n'"
+    "dev": "echo '\\n📋 To run tests: npm test\\n🌐 To start frontend: cd frontned && npm run dev\\n'"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
