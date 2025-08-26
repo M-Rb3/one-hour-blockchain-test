@@ -81,11 +81,11 @@ npm test
 npm run dev
 ```
 
-# Deploy to testnet
+## Deploy to testnet
 
-# The deployment will save contract info to deployment.json
+## The deployment will save contract info to deployment.json
 
-# Use this address in your frontend
+## Use this address in your frontend
 
 ````
 
