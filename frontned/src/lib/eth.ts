@@ -2,23 +2,23 @@ import { ethers, Contract, JsonRpcProvider, Wallet } from 'ethers';
 import * as erc721Abi from '../../abi/erc721.json';
 
 // Environment variables validation
-const requiredEnvVars = ['RPC_URL', 'CONTRACT_ADDRESS', 'WALLET_PRIVATE_KEY'];
+const requiredEnvVars = ['VITE_APP_RPC_URL', 'VITE_APP_CONTRACT_ADDRESS', 'VITE_APP_WALLET_PRIVATE_KEY'];
 for (const envVar of requiredEnvVars) {
-  if (!process.env[envVar]) {
+  if (!import.meta.env[envVar]) {
     throw new Error(`Missing required environment variable: ${envVar}`);
   }
 }
 
 // Initialize provider and signer
-const provider = new JsonRpcProvider(process.env.RPC_URL);
-const wallet = new Wallet(process.env.WALLET_PRIVATE_KEY!, provider);
+const provider = new JsonRpcProvider(import.meta.env.VITE_APP_RPC_URL);
+const wallet = new Wallet(import.meta.env.VITE_APP_WALLET_PRIVATE_KEY!, provider);
 
 /**
  * Get the ERC-721 contract instance with signer for write operations
  */
 export function getContract(): Contract {
   return new Contract(
-    process.env.CONTRACT_ADDRESS!,
+    import.meta.env.VITE_APP_CONTRACT_ADDRESS!,
     erc721Abi,
     wallet // Use wallet (signer) for both read and write operations
   );
@@ -29,7 +29,7 @@ export function getContract(): Contract {
  */
 export function getReadOnlyContract(): Contract {
   return new Contract(
-    process.env.CONTRACT_ADDRESS!,
+    import.meta.env.VITE_APP_CONTRACT_ADDRESS!,
     erc721Abi,
     provider
   );
