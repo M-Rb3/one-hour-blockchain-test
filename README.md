@@ -83,8 +83,6 @@ npm run dev
 
 # Deploy to testnet
 
-npm run deploy:sepolia
-
 # The deployment will save contract info to deployment.json
 
 # Use this address in your frontend
