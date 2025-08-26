@@ -11,12 +11,11 @@ An Ethereum VotingDAO smart contract that allows users to create proposals, vote
 
 ## Setup
 
-### Option 1: Docker (Recommended - No setup issues!)
+### Option 1: Docker
 
 #### Prerequisites
 
 - Docker and Docker Compose installed
-- MetaMask or any Web3 wallet
 
 #### Quick Start with Docker
 
@@ -57,7 +56,7 @@ docker-compose down
 
 #### Prerequisites
 
-- Node.js 24+ (or use Docker for consistent environment)
+- Node.js 24+
 - npm or yarn
 - MetaMask or any Web3 wallet
 
@@ -65,8 +64,10 @@ docker-compose down
 
 ```bash
 # Clone and install dependencies
-git clone https://github.com/M-Rb3/code-assessment
-cd code-assessment
+git clone https://github.com/M-Rb3/one-hour-blockchain-test
+
+cd one-hour-blockchain-test
+
 npm install
 
 # Setup environment (optional for deployment)
@@ -200,41 +201,9 @@ You have a **working template** with strategic TODOs. **DO NOT start from scratc
 
   - Format wallet address for display (first 6 + last 4 chars)
 
-## Testing Your Work
 
-```bash
-# Run all tests
-npm test
 
-# Run specific test
-npx hardhat test --grep "TODO-A"
 
-# Run with gas reporting
-npx hardhat test --gas-report
-````
-
-## Rubric (Pass/Fail)
-
-### ✅ Must Pass (Required)
-
-- [ ] All 7 contract TODOs implemented correctly
-- [ ] All 12 web3 service TODOs implemented correctly
-- [ ] All 8 React component TODOs implemented correctly
-- [ ] Contract compiles without errors
-- [ ] Frontend runs without errors (`npm run dev` in frontend directory)
-- [ ] Proper error handling (reverts with expected messages)
-- [ ] Tests use proper validation patterns
-- [ ] Code follows security patterns (proper validation, state management)
-- [ ] Wallet connection works with any wallet (MetaMask, WalletConnect, etc.)
-
-### 🏆 Bonus Points (Optional)
-
-- [ ] All tests pass (`npm test` succeeds)
-- [ ] Additional edge case tests
-- [ ] Gas optimization considerations
-- [ ] Clean, readable code style
-- [ ] Thoughtful error messages
-- [ ] Additional UI features (loading states, better error handling)
 
 ## Run Commands Reference
 
@@ -279,7 +248,8 @@ cd frontned && npm run dev  # Start Vite dev server on port 5173
 ## Project Structure
 
 ```
-code-assessment/
+one-hour-blockchain-test
+/
 ├── Dockerfile                # Docker configuration
 ├── docker-compose.yml        # Docker services
 ├── .dockerignore             # Docker ignore file
@@ -306,10 +276,4 @@ code-assessment/
             └── Index.tsx    # Main component (has TODOs)
 ```
 
-## Success Criteria Summary
-
-**Excellent submission:**
-
-- Above + all tests pass + clean code + additional features ✅
-
-Good luck! Focus on the core functionality first, then polish if time permits.
+````
