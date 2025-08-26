@@ -1,26 +1,24 @@
 version: "3.8"
 
 services:
-  blockchain-test:
+  frontend:
     build: .
     ports:
-      - "5173:5173" # Frontend
-      - "8545:8545" # Hardhat node
+      - "8080:8080" # Frontend (matching vite config)
     volumes:
       - .:/app
       - /app/node_modules
       - /app/frontned/node_modules
     environment:
       - NODE_ENV=development
-    command: sh -c "npm run dev & cd frontned && npm run dev"
+    command: sh -c "cd frontned && npm run dev"
     stdin_open: true
     tty: true
 
-  # Alternative: Just run the blockchain environment
-  blockchain-only:
+  blockchain:
     build: .
     ports:
-      - "8545:8545"
+      - "8545:8545" # Hardhat node
     volumes:
       - .:/app
       - /app/node_modules
@@ -29,3 +27,19 @@ services:
     command: npx hardhat node
     profiles:
       - blockchain
+
+  # Combined service (both frontend and blockchain)
+  blockchain-test:
+    build: .
+    ports:
+      - "8080:8080" # Frontend
+      - "8545:8545" # Hardhat node
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/frontned/node_modules
+    environment:
+      - NODE_ENV=development
+    command: sh -c "npx hardhat node & cd frontned && npm run dev"
+    stdin_open: true
+    tty: true

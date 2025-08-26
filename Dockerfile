@@ -24,7 +24,7 @@ RUN cd frontned && npm install
 COPY . .
 
 # Expose ports
-EXPOSE 5173 8545
+EXPOSE 8080 8545
 
 # Create a non-root user
 RUN addgroup -g 1001 -S nodejs
@@ -35,4 +35,4 @@ RUN chown -R nextjs:nodejs /app
 USER nextjs
 
 # Default command
-CMD ["npm", "run", "dev"]
+CMD ["sh", "-c", "cd frontned && npm run dev"]
