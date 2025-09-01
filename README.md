@@ -139,65 +139,8 @@ You have a **working template** with strategic TODOs. **DO NOT start from scratc
 
 #### Tests (`test/VotingDAO.test.cjs`)
 
-- **TODO-A**: Complete "Should prevent voting on inactive proposals" test
-- **TODO-B**: Complete "Should prevent ending invalid proposal ID" test
-- **TODO-C**: Complete "Should ignore inactive proposals when finding winner" test
-- **TODO-D**: Complete "Should return false for different proposals" test
-- **TODO-E**: Complete "Should handle empty proposals array" test
-- **TODO-F**: Complete "Should handle proposal with zero votes" test
 
-### Frontend TODOs
-
-#### React Component (`frontend/src/pages/Index.tsx`)
-
-- **TODO-1**: Implement wallet connection UI
-
-  - Call web3Service.connectWallet()
-  - Update UI state (userAddress, isConnected)
-  - Show loading state during connection
-  - Display success/error messages
-
-- **TODO-2**: Implement contract connection UI
-
-  - Validate contract address input
-  - Call web3Service.connectContract()
-  - Show loading state during connection
-  - Display success/error messages
-
-- **TODO-3**: Implement data loading UI
-
-  - Call web3Service.getAllProposals()
-  - Update proposals state
-  - Handle loading states and errors
-
-- **TODO-4**: Implement winning proposal display
-
-  - Call web3Service.getWinningProposal()
-  - Update winningProposal state
-  - Handle case when no winner exists
-
-- **TODO-5**: Implement proposal creation UI
-
-  - Validate input field
-  - Call web3Service.createProposal()
-  - Clear input and refresh data
-  - Show loading and success/error states
-
-- **TODO-6**: Implement voting UI
-
-  - Call web3Service.vote() with proposal ID
-  - Refresh proposals and winning proposal
-  - Show loading and success/error states
-
-- **TODO-7**: Implement proposal ending UI
-
-  - Call web3Service.endProposal() with proposal ID
-  - Refresh proposals and winning proposal
-  - Show loading and success/error states
-
-- **TODO-8**: Implement address formatting
-
-  - Format wallet address for display (first 6 + last 4 chars)
+### Frontend TODOs (frontned/src/pages/Index.tsx)
 
 
 
@@ -235,9 +178,22 @@ npx hardhat node     # Start local blockchain
 npx hardhat clean    # Clean artifacts
 
 # Deployment commands
-npm run deploy       # Deploy to local network
-npm run deploy:sepolia  # Deploy to Sepolia testnet
-npm run verify       # Verify contract on Etherscan
+
+Both npm scripts and direct npx hardhat commands work:
+
+## Using npx hardhat directly
+```bash
+npx hardhat run scripts/deploy.cjs                    # Deploy to local network
+npx hardhat run scripts/deploy.cjs --network sepolia  # Deploy to Sepolia testnet
+npx hardhat verify --network sepolia <CONTRACT_ADDRESS> # Verify contract on Etherscan
+```
+
+## Other useful commands
+```bash
+npx hardhat compile  # Compile contracts
+npx hardhat test     # Run tests
+npx hardhat node     # Start local blockchain node
+```
 
 # Frontend
 cd frontned && npm run dev  # Start Vite dev server on port 5173

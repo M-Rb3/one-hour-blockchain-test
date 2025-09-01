@@ -2,14 +2,13 @@ const { ethers } = require("hardhat");
 
 async function main() {
   console.log("🚀 Deploying VotingDAO contract...");
-  console.log("Network:", process.env.NETWORK || "hardhat");
+
+  // Get the network from hardhat runtime environment
+  const network = hre.network.name;
+  console.log("Network:", network);
 
   // Check if private key is set for testnet deployment
-  if (
-    process.env.NETWORK &&
-    process.env.NETWORK !== "hardhat" &&
-    !process.env.PRIVATE_KEY
-  ) {
+  if (network !== "hardhat" && !process.env.PRIVATE_KEY) {
     console.error("❌ PRIVATE_KEY not found in environment variables");
     console.error("Please set your private key in the .env file");
     process.exit(1);
@@ -24,13 +23,13 @@ async function main() {
   const address = await votingDAO.getAddress();
   console.log("✅ VotingDAO deployed successfully!");
   console.log("📍 Contract address:", address);
-  console.log("🔗 Network:", process.env.NETWORK || "hardhat");
+  console.log("🔗 Network:", network);
 
   // Save contract address to file for frontend
   const fs = require("fs");
   const contractInfo = {
     address: address,
-    network: process.env.NETWORK || "hardhat",
+    network: network,
     deployedAt: new Date().toISOString(),
   };
 
