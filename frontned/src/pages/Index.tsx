@@ -12,6 +12,7 @@ import { Badge } from "../components/ui/badge";
 import { Separator } from "../components/ui/separator";
 import { Proposal } from "../lib/web3";
 import { toast } from "sonner";
+import { ethers } from "@/lib/eth";
 
 const DAOVoting: React.FC = () => {
   const [isConnected, setIsConnected] = useState(false);
@@ -29,6 +30,13 @@ const DAOVoting: React.FC = () => {
     }
   }, [isConnected, contractAddress]);
 
+  const checkNetwork = async () => {
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const network = await provider.getNetwork();
+    console.log("Connected to:", network.name);
+  };
+
+
   /**
    * TODO-1: Implement wallet connection UI
    * - Update UI state (userAddress, isConnected)
@@ -37,7 +45,22 @@ const DAOVoting: React.FC = () => {
    */
   const connectWallet = async () => {
     // TODO-1: Add implementation here
-    toast.error("Wallet connection not implemented");
+
+    if (window.ethereum) {
+      try {
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        setIsConnected(true);
+        setUserAddress(accounts[0]);
+      } catch (error) {
+        console.error("User rejected request:", error);
+      }
+    } else {
+
+      toast.error("MetaMask not found!");
+
+    }
   };
 
   /**
